@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowRight, Home, BookOpen, Users } from "lucide-react";
+import { User, ArrowRight, CheckCircle, Home, Clock, Book } from "lucide-react";
 
 const Index = () => {
   return (
@@ -12,106 +12,123 @@ const Index = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-ranepa-burgundy to-ranepa-darkred py-16 md:py-24 text-white">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="md:w-1/2 space-y-6">
-                <div className="inline-block bg-white/10 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  Квиз для абитуриентов и родителей
-                </div>
-                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white">
-                  Узнайте больше об общежитиях Президентской академии
-                </h1>
-                <p className="text-lg text-white">
-                  Пройдите увлекательный квиз и проверьте свои знания о проживании в общежитиях Российской академии народного хозяйства и государственной службы.
-                </p>
-                <div className="flex gap-4">
-                  <Button 
-                    asChild
-                    size="lg" 
-                    className="bg-ranepa-gold text-ranepa-velvet hover:bg-ranepa-cream"
-                  >
-                    <Link to="/quiz">
-                      Начать квиз <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="md:w-1/2">
-                <img 
-                  src="https://cdn.poehali.dev/files/35aa48a8-de8c-47b2-9520-f77571c9be74.jpg" 
-                  alt="Общежития Президентской академии" 
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
+        <section className="relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-burgundy/90 z-10"></div>
+          <img 
+            src="https://cdn.poehali.dev/files/35aa48a8-de8c-47b2-9520-f77571c9be74.jpg" 
+            alt="Президентская академия" 
+            className="w-full h-[500px] object-cover"
+          />
+          <div className="container mx-auto px-4 relative z-20 py-20 text-white">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Стандарты обслуживания гостей
+              </h1>
+              <p className="text-xl mb-8 opacity-90">
+                Проверьте свои знания о правилах работы в общежитиях Президентской академии
+              </p>
+              <Button 
+                asChild
+                size="lg" 
+                className="bg-velvet hover:bg-velvet/90 text-white"
+              >
+                <Link to="/quiz" className="inline-flex items-center gap-2">
+                  Начать тест <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
         
-        {/* Features Section */}
-        <section className="py-16 bg-ranepa-cream">
+        {/* About Quiz Section */}
+        <section className="bg-gradient-to-b from-burgundy to-dark-burgundy py-16 text-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-ranepa-burgundy">
-              Почему стоит выбрать общежития Президентской академии
+            <h2 className="text-3xl font-bold text-center mb-12">О стандартах обслуживания</h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="bg-velvet/20 border-velvet/30 p-6 backdrop-blur">
+                <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
+                  <User className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Коммуникация</h3>
+                <p className="text-white/80">
+                  Правила общения с гостями, приветствие и обращение по имени, важность визуального контакта.
+                </p>
+              </Card>
+              
+              <Card className="bg-velvet/20 border-velvet/30 p-6 backdrop-blur">
+                <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
+                  <Home className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Доступ в комнаты</h3>
+                <p className="text-white/80">
+                  Правила входа в комнату гостя, обеспечение доступа техническим службам, соблюдение приватности.
+                </p>
+              </Card>
+              
+              <Card className="bg-velvet/20 border-velvet/30 p-6 backdrop-blur">
+                <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
+                  <Clock className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Забытые вещи</h3>
+                <p className="text-white/80">
+                  Процедуры работы с забытыми вещами, сроки хранения, документирование и обеспечение сохранности.
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+        
+        {/* Why Take Quiz Section */}
+        <section className="py-16 bg-light-burgundy">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center text-white mb-12">
+              Почему стоит пройти тест?
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="border-t-4 border-t-ranepa-burgundy shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="bg-ranepa-burgundy/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Home className="h-6 w-6 text-ranepa-burgundy" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-ranepa-burgundy">Комфортное проживание</h3>
-                  <p className="text-gray-700">
-                    Современные общежития с различными типами комнат, от блочного до гостиничного формата.
+            <div className="max-w-3xl mx-auto space-y-6">
+              <div className="flex items-start gap-4 bg-white/10 p-6 rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Проверьте свои знания</h3>
+                  <p className="text-white/80">
+                    Тест поможет определить, насколько хорошо вы знаете стандарты обслуживания в общежитиях Президентской академии.
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
               
-              <Card className="border-t-4 border-t-ranepa-red shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="bg-ranepa-red/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <BookOpen className="h-6 w-6 text-ranepa-red" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-ranepa-red">Удобное расположение</h3>
-                  <p className="text-gray-700">
-                    Близость к учебным корпусам, хорошая транспортная доступность и развитая инфраструктура.
+              <div className="flex items-start gap-4 bg-white/10 p-6 rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Освежите информацию</h3>
+                  <p className="text-white/80">
+                    В процессе прохождения теста вы вспомните ключевые принципы коммуникации с гостями и работы с обращениями.
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
               
-              <Card className="border-t-4 border-t-ranepa-velvet shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="bg-ranepa-velvet/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Users className="h-6 w-6 text-ranepa-velvet" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-ranepa-velvet">Студенческое сообщество</h3>
-                  <p className="text-gray-700">
-                    Возможность общаться и обмениваться опытом со студентами разных факультетов и курсов.
+              <div className="flex items-start gap-4 bg-white/10 p-6 rounded-lg">
+                <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Подготовьтесь к работе</h3>
+                  <p className="text-white/80">
+                    Тест будет полезен как для новых сотрудников, так и для тех, кто хочет освежить знания стандартов обслуживания.
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
-        
-        {/* CTA Section */}
-        <section className="py-16 bg-ranepa-velvet text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">Готовы проверить свои знания?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto text-white">
-              Пройдите наш квиз и узнайте, насколько хорошо вы знакомы с общежитиями Президентской академии и правилами проживания в них.
-            </p>
-            <Button 
-              asChild
-              size="lg" 
-              variant="outline" 
-              className="bg-transparent border-white text-white hover:bg-white hover:text-ranepa-velvet"
-            >
-              <Link to="/quiz">
-                Начать квиз <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            
+            <div className="text-center mt-12">
+              <Button 
+                asChild
+                size="lg" 
+                className="bg-velvet hover:bg-velvet/90 text-white"
+              >
+                <Link to="/quiz" className="inline-flex items-center gap-2">
+                  Начать тест <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
