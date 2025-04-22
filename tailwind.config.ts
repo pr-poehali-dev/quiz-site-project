@@ -65,9 +65,13 @@ export default {
 				ranepa: {
 					blue: '#003d7a',
 					red: '#a91c1c',
-					lightblue: '#4f7db3',
-					gray: '#f1f0fb',
-					gold: '#d4af37'
+					darkred: '#7a0000',
+					velvet: '#5c0505',
+					burgundy: '#800020',
+					gold: '#d4af37',
+					cream: '#fff8e7',
+					pearl: '#f5f5f5',
+					lightgray: '#f1f0fb'
 				}
 			},
 			borderRadius: {

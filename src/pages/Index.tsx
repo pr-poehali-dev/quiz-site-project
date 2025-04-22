@@ -12,24 +12,24 @@ const Index = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-white to-ranepa-gray py-16 md:py-24">
+        <section className="bg-gradient-to-b from-ranepa-burgundy to-ranepa-darkred py-16 md:py-24 text-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2 space-y-6">
-                <div className="inline-block bg-ranepa-blue/10 text-ranepa-blue px-4 py-1 rounded-full text-sm font-semibold">
+                <div className="inline-block bg-white/10 text-ranepa-cream px-4 py-1 rounded-full text-sm font-semibold">
                   Квиз для абитуриентов и родителей
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-ranepa-blue">
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-ranepa-gold">
                   Узнайте больше об общежитиях РАНХиГС
                 </h1>
-                <p className="text-lg text-gray-700">
+                <p className="text-lg text-ranepa-pearl">
                   Пройдите увлекательный квиз и проверьте свои знания о проживании в общежитиях Российской академии народного хозяйства и государственной службы.
                 </p>
                 <div className="flex gap-4">
                   <Button 
                     asChild
                     size="lg" 
-                    className="bg-ranepa-blue hover:bg-ranepa-blue/90"
+                    className="bg-ranepa-gold text-ranepa-velvet hover:bg-ranepa-cream"
                   >
                     <Link to="/quiz">
                       Начать квиз <ArrowRight className="ml-2 h-4 w-4" />
@@ -49,44 +49,44 @@ const Index = () => {
         </section>
         
         {/* Features Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-ranepa-cream">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-ranepa-blue">
+            <h2 className="text-3xl font-bold text-center mb-12 text-ranepa-burgundy">
               Почему стоит выбрать общежития РАНХиГС
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="border-t-4 border-t-ranepa-blue">
+              <Card className="border-t-4 border-t-ranepa-burgundy shadow-lg">
                 <CardContent className="pt-6">
-                  <div className="bg-ranepa-blue/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Home className="h-6 w-6 text-ranepa-blue" />
+                  <div className="bg-ranepa-burgundy/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <Home className="h-6 w-6 text-ranepa-burgundy" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Комфортное проживание</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-bold mb-2 text-ranepa-burgundy">Комфортное проживание</h3>
+                  <p className="text-gray-700">
                     Современные общежития с различными типами комнат, от блочного до гостиничного формата.
                   </p>
                 </CardContent>
               </Card>
               
-              <Card className="border-t-4 border-t-ranepa-red">
+              <Card className="border-t-4 border-t-ranepa-red shadow-lg">
                 <CardContent className="pt-6">
                   <div className="bg-ranepa-red/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
                     <BookOpen className="h-6 w-6 text-ranepa-red" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Удобное расположение</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-bold mb-2 text-ranepa-red">Удобное расположение</h3>
+                  <p className="text-gray-700">
                     Близость к учебным корпусам, хорошая транспортная доступность и развитая инфраструктура.
                   </p>
                 </CardContent>
               </Card>
               
-              <Card className="border-t-4 border-t-ranepa-lightblue">
+              <Card className="border-t-4 border-t-ranepa-velvet shadow-lg">
                 <CardContent className="pt-6">
-                  <div className="bg-ranepa-lightblue/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <Users className="h-6 w-6 text-ranepa-lightblue" />
+                  <div className="bg-ranepa-velvet/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <Users className="h-6 w-6 text-ranepa-velvet" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Студенческое сообщество</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-bold mb-2 text-ranepa-velvet">Студенческое сообщество</h3>
+                  <p className="text-gray-700">
                     Возможность общаться и обмениваться опытом со студентами разных факультетов и курсов.
                   </p>
                 </CardContent>
@@ -96,17 +96,17 @@ const Index = () => {
         </section>
         
         {/* CTA Section */}
-        <section className="py-16 bg-ranepa-blue text-white">
+        <section className="py-16 bg-ranepa-velvet text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">Готовы проверить свои знания?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6 text-ranepa-gold">Готовы проверить свои знания?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto text-ranepa-pearl">
               Пройдите наш квиз и узнайте, насколько хорошо вы знакомы с общежитиями РАНХиГС и правилами проживания в них.
             </p>
             <Button 
               asChild
               size="lg" 
               variant="outline" 
-              className="bg-transparent border-white text-white hover:bg-white hover:text-ranepa-blue"
+              className="bg-transparent border-ranepa-gold text-ranepa-gold hover:bg-ranepa-gold hover:text-ranepa-velvet"
             >
               <Link to="/quiz">
                 Начать квиз <ArrowRight className="ml-2 h-4 w-4" />
