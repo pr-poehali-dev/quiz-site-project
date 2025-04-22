@@ -63,13 +63,16 @@ export const getQuizResults = (answers: number[]) => {
   
   let correctCount = 0;
   
+  // Проверим только те ответы, для которых у нас есть вопросы
   answers.forEach((answer, index) => {
-    if (answer === quizQuestions[index].correctAnswer) {
+    if (index < quizQuestions.length && answer === quizQuestions[index].correctAnswer) {
       correctCount++;
     }
   });
   
-  const score = Math.round((correctCount / answers.length) * 100);
+  // Используем минимальное значение между количеством ответов и количеством вопросов
+  const totalAnswered = Math.min(answers.length, quizQuestions.length);
+  const score = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
   
   let message = "";
   if (score >= 80) {
@@ -82,5 +85,5 @@ export const getQuizResults = (answers: number[]) => {
     message = "Пока вы не очень хорошо знакомы с общежитиями РАНХиГС. Рекомендуем изучить больше информации на нашем сайте.";
   }
   
-  return { score, message, correctCount, totalQuestions: answers.length };
+  return { score, message, correctCount, totalQuestions: totalAnswered };
 };
