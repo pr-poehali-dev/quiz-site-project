@@ -16,13 +16,13 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/2 space-y-6">
-                <div className="inline-block bg-white/10 text-ranepa-cream px-4 py-1 rounded-full text-sm font-semibold">
+                <div className="inline-block bg-white/10 text-white px-4 py-1 rounded-full text-sm font-semibold">
                   Квиз для абитуриентов и родителей
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-ranepa-gold">
-                  Узнайте больше об общежитиях РАНХиГС
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white">
+                  Узнайте больше об общежитиях Президентской академии
                 </h1>
-                <p className="text-lg text-ranepa-pearl">
+                <p className="text-lg text-white">
                   Пройдите увлекательный квиз и проверьте свои знания о проживании в общежитиях Российской академии народного хозяйства и государственной службы.
                 </p>
                 <div className="flex gap-4">
@@ -39,8 +39,8 @@ const Index = () => {
               </div>
               <div className="md:w-1/2">
                 <img 
-                  src="/placeholder.svg" 
-                  alt="Общежития РАНХиГС" 
+                  src="https://cdn.poehali.dev/files/35aa48a8-de8c-47b2-9520-f77571c9be74.jpg" 
+                  alt="Общежития Президентской академии" 
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
@@ -52,7 +52,7 @@ const Index = () => {
         <section className="py-16 bg-ranepa-cream">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-ranepa-burgundy">
-              Почему стоит выбрать общежития РАНХиГС
+              Почему стоит выбрать общежития Президентской академии
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -98,15 +98,15 @@ const Index = () => {
         {/* CTA Section */}
         <section className="py-16 bg-ranepa-velvet text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6 text-ranepa-gold">Готовы проверить свои знания?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto text-ranepa-pearl">
-              Пройдите наш квиз и узнайте, насколько хорошо вы знакомы с общежитиями РАНХиГС и правилами проживания в них.
+            <h2 className="text-3xl font-bold mb-6 text-white">Готовы проверить свои знания?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto text-white">
+              Пройдите наш квиз и узнайте, насколько хорошо вы знакомы с общежитиями Президентской академии и правилами проживания в них.
             </p>
             <Button 
               asChild
               size="lg" 
               variant="outline" 
-              className="bg-transparent border-ranepa-gold text-ranepa-gold hover:bg-ranepa-gold hover:text-ranepa-velvet"
+              className="bg-transparent border-white text-white hover:bg-white hover:text-ranepa-velvet"
             >
               <Link to="/quiz">
                 Начать квиз <ArrowRight className="ml-2 h-4 w-4" />
