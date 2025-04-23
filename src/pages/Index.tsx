@@ -17,7 +17,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-burgundy/90 z-10"></div>
           <img 
             src="https://cdn.poehali.dev/files/35aa48a8-de8c-47b2-9520-f77571c9be74.jpg" 
-            alt="Президентская академия" 
+            alt="Здание" 
             className="w-full h-[500px] object-cover"
           />
           <div className="container mx-auto px-4 relative z-20 py-20 text-white">
@@ -26,7 +26,7 @@ const Index = () => {
                 Стандарты обслуживания гостей
               </h1>
               <p className="text-xl mb-8 opacity-90">
-                Проверьте свои знания о правилах работы в общежитиях Президентской академии
+                Проверьте свои знания о правилах работы в общежитиях
               </p>
               
               <UserForm />
@@ -86,7 +86,7 @@ const Index = () => {
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Проверьте свои знания</h3>
                   <p className="text-white/80">
-                    Тест поможет определить, насколько хорошо вы знаете стандарты обслуживания в общежитиях Президентской академии.
+                    Тест поможет определить, насколько хорошо вы знаете стандарты обслуживания в общежитиях.
                   </p>
                 </div>
               </div>

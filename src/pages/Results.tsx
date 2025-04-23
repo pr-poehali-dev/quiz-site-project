@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CircleCheck, ArrowLeft, RotateCcw } from "lucide-react";
+import { CircleCheck, ArrowLeft, RotateCcw, Send } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getQuizResults } from "@/components/QuizData";
@@ -10,11 +13,15 @@ import { getQuizResults } from "@/components/QuizData";
 interface ResultsState {
   answers: number[];
   userName: string;
+  timeExpired?: boolean;
 }
 
 const Results = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailError, setEmailError] = useState("");
   const [results, setResults] = useState<{
     score: number;
     message: string;
@@ -29,7 +36,7 @@ const Results = () => {
       return;
     }
 
-    const { answers, userName } = location.state as ResultsState;
+    const { answers, userName, timeExpired } = location.state as ResultsState;
     if (!answers || !Array.isArray(answers)) {
       navigate('/');
       return;
@@ -39,9 +46,33 @@ const Results = () => {
     setResults(quizResults);
   }, [location.state, navigate]);
 
+  const handleSendResults = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email.trim()) {
+      setEmailError("Пожалуйста, введите email");
+      return;
+    }
+    
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Пожалуйста, введите корректный email");
+      return;
+    }
+    
+    // Simulate sending results to the email
+    console.log("Sending results to:", email, results);
+    
+    // In a real application, you would make an API call here
+    // For now, we'll just simulate success
+    setEmailSent(true);
+    setEmailError("");
+  };
+
   if (!results) {
     return null;
   }
+
+  const timeExpired = (location.state as ResultsState)?.timeExpired;
 
   return (
     <div className="flex flex-col min-h-screen bg-burgundy text-white">
@@ -57,6 +88,12 @@ const Results = () => {
             <h1 className="text-3xl font-bold text-white mb-4">
               Ваши результаты
             </h1>
+
+            {timeExpired && (
+              <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mb-6 text-white">
+                <p>Время вышло! Учтены только отвеченные вопросы.</p>
+              </div>
+            )}
 
             <div className="bg-velvet/20 border border-velvet/30 rounded-lg p-6 mb-8">
               <div className="space-y-4">
@@ -79,6 +116,35 @@ const Results = () => {
                 </div>
               </div>
             </div>
+
+            <Card className="bg-velvet/20 border-velvet/30 p-6 mb-8">
+              <h3 className="text-xl font-bold mb-4">Отправить результаты на почту</h3>
+              <form onSubmit={handleSendResults} className="space-y-4">
+                <div className="space-y-2 text-left">
+                  <Label htmlFor="email">Email адрес</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="example@domain.com"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setEmailError("");
+                    }}
+                    className="bg-white/10 border-white/20 text-white"
+                  />
+                  {emailError && <p className="text-red-300 text-sm">{emailError}</p>}
+                  {emailSent && <p className="text-green-300 text-sm">Результаты отправлены!</p>}
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-velvet hover:bg-velvet/90"
+                  disabled={emailSent}
+                >
+                  <Send className="mr-2 h-4 w-4" /> Отправить результаты
+                </Button>
+              </form>
+            </Card>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

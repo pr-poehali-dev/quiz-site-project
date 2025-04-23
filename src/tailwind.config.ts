@@ -6,7 +6,7 @@ const config: Config = {
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}'
+    './src/**/*.{ts,tsx}',
   ],
   prefix: "",
   theme: {
@@ -19,6 +19,11 @@ const config: Config = {
     },
     extend: {
       colors: {
+        burgundy: "#8B0000",
+        "dark-burgundy": "#560000",
+        velvet: "#AA0000",
+        "ranepa-burgundy": "#8B0000",
+        "ranepa-gold": "#FFD700",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -52,14 +57,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        'ranepa-blue': '#003d70',
-        'ranepa-burgundy': '#780016',
-        'ranepa-gold': '#ba9b63',
-        'ranepa-gray': '#f0f0f0',
-        'burgundy': '#780016',
-        'dark-burgundy': '#56000f',
-        'light-burgundy': '#9a001c',
-        'velvet': '#c1003f',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -83,6 +80,6 @@ const config: Config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
 
 export default config;

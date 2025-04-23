@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom";
+import { Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-ranepa-burgundy text-white py-8">
-      <div className="container mx-auto">
-        <div className="text-center">
-          <h3 className="font-bold text-lg mb-2">Президентская академия</h3>
-          <p className="text-sm text-white max-w-2xl mx-auto">
-            Дирекция гостиничного жилого фонда Российской академии народного хозяйства и государственной службы при Президенте РФ
+    <footer className="bg-dark-burgundy text-white py-6">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center justify-center text-center">
+          <p className="text-white/80 text-sm">
+            © {new Date().getFullYear()} Дирекция гостиничного жилого фонда
           </p>
-        </div>
-
-        <div className="border-t border-ranepa-velvet/50 mt-6 pt-6 text-center text-sm text-white">
-          &copy; {new Date().getFullYear()} Президентская академия. Все права защищены.
+          <div className="flex items-center justify-center mt-2 text-sm text-white/60">
+            <span>Сделано с</span>
+            <Heart className="h-4 w-4 mx-1 text-velvet" />
+            <span>для сотрудников</span>
+          </div>
         </div>
       </div>
     </footer>
