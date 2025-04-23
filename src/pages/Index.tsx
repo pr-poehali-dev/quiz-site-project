@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import UserForm from "@/components/UserForm";
 import { User, ArrowRight, CheckCircle, Home, Clock, Book } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-burgundy text-white">
       <Header />
       
       <main className="flex-1">
@@ -27,15 +28,8 @@ const Index = () => {
               <p className="text-xl mb-8 opacity-90">
                 Проверьте свои знания о правилах работы в общежитиях Президентской академии
               </p>
-              <Button 
-                asChild
-                size="lg" 
-                className="bg-velvet hover:bg-velvet/90 text-white"
-              >
-                <Link to="/quiz" className="inline-flex items-center gap-2">
-                  Начать тест <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
+              
+              <UserForm />
             </div>
           </div>
         </section>
@@ -50,7 +44,7 @@ const Index = () => {
                 <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
                   <User className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Коммуникация</h3>
+                <h3 className="text-xl font-bold mb-3 text-white">Коммуникация</h3>
                 <p className="text-white/80">
                   Правила общения с гостями, приветствие и обращение по имени, важность визуального контакта.
                 </p>
@@ -60,7 +54,7 @@ const Index = () => {
                 <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
                   <Home className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Доступ в комнаты</h3>
+                <h3 className="text-xl font-bold mb-3 text-white">Доступ в комнаты</h3>
                 <p className="text-white/80">
                   Правила входа в комнату гостя, обеспечение доступа техническим службам, соблюдение приватности.
                 </p>
@@ -70,7 +64,7 @@ const Index = () => {
                 <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Забытые вещи</h3>
+                <h3 className="text-xl font-bold mb-3 text-white">Забытые вещи</h3>
                 <p className="text-white/80">
                   Процедуры работы с забытыми вещами, сроки хранения, документирование и обеспечение сохранности.
                 </p>
@@ -80,14 +74,14 @@ const Index = () => {
         </section>
         
         {/* Why Take Quiz Section */}
-        <section className="py-16 bg-light-burgundy">
+        <section className="py-16 bg-dark-burgundy">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-white mb-12">
               Почему стоит пройти тест?
             </h2>
             
             <div className="max-w-3xl mx-auto space-y-6">
-              <div className="flex items-start gap-4 bg-white/10 p-6 rounded-lg">
+              <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Проверьте свои знания</h3>
@@ -97,7 +91,7 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 bg-white/10 p-6 rounded-lg">
+              <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Освежите информацию</h3>
@@ -107,7 +101,7 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4 bg-white/10 p-6 rounded-lg">
+              <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Подготовьтесь к работе</h3>
@@ -116,18 +110,6 @@ const Index = () => {
                   </p>
                 </div>
               </div>
-            </div>
-            
-            <div className="text-center mt-12">
-              <Button 
-                asChild
-                size="lg" 
-                className="bg-velvet hover:bg-velvet/90 text-white"
-              >
-                <Link to="/quiz" className="inline-flex items-center gap-2">
-                  Начать тест <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
             </div>
           </div>
         </section>

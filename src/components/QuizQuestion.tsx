@@ -1,82 +1,43 @@
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-
-export type QuestionType = {
+export interface QuestionType {
   id: number;
   text: string;
   options: string[];
-  correctAnswer?: number;
-};
+  correctAnswer: number;
+}
 
-type QuizQuestionProps = {
+interface QuizQuestionProps {
   question: QuestionType;
   totalQuestions: number;
   currentIndex: number;
   onAnswer: (answerId: number) => void;
-};
+}
 
-const QuizQuestion = ({
-  question,
-  totalQuestions,
-  currentIndex,
-  onAnswer,
-}: QuizQuestionProps) => {
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const progress = ((currentIndex + 1) / totalQuestions) * 100;
-
-  const handleSubmit = () => {
-    if (selectedOption !== null) {
-      onAnswer(selectedOption);
-      setSelectedOption(null);
-    }
-  };
-
+const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: QuizQuestionProps) => {
   return (
-    <div className="animate-fade-in">
+    <div className="quiz-card bg-velvet/20 border-velvet/30 text-white">
       <div className="mb-6">
-        <div className="flex justify-between text-sm text-gray-500 mb-2">
-          <span>Вопрос {currentIndex + 1} из {totalQuestions}</span>
-          <span>{Math.round(progress)}%</span>
-        </div>
-        <Progress value={progress} className="h-2" />
+        <span className="inline-block px-3 py-1 rounded-full bg-velvet/40 text-white text-sm mb-4">
+          Вопрос {currentIndex + 1} из {totalQuestions}
+        </span>
+        <h2 className="text-xl font-medium text-white">{question.text}</h2>
       </div>
       
-      <Card className="quiz-card">
-        <h3 className="text-xl font-bold mb-6">{question.text}</h3>
-        
-        <RadioGroup 
-          value={selectedOption?.toString()} 
-          onValueChange={(value) => setSelectedOption(parseInt(value))}
-          className="space-y-4 mb-6"
-        >
-          {question.options.map((option, index) => (
-            <div 
-              key={index} 
-              className="flex items-center space-x-3 p-3 rounded-md border border-gray-200 hover:bg-gray-50 transition-colors"
-            >
-              <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-              <Label 
-                htmlFor={`option-${index}`} 
-                className="flex-1 cursor-pointer font-normal"
-              >
-                {option}
-              </Label>
-            </div>
-          ))}
-        </RadioGroup>
-        
-        <Button 
-          onClick={handleSubmit} 
-          disabled={selectedOption === null}
-          className="w-full bg-ranepa-blue hover:bg-ranepa-blue/90"
-        >
-          Следующий вопрос
-        </Button>
-      </Card>
+      <div className="space-y-3">
+        {question.options.map((option, index) => (
+          <button
+            key={index}
+            className="w-full text-left p-4 rounded-lg transition-colors border border-white/20 hover:bg-velvet/30 focus:outline-none focus:ring-2 focus:ring-velvet"
+            onClick={() => onAnswer(index)}
+          >
+            <span className="inline-flex items-center">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full mr-3 bg-white/20 text-white text-sm">
+                {String.fromCharCode(65 + index)}
+              </span>
+              {option}
+            </span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
