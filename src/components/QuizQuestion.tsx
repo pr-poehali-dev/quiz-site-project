@@ -39,6 +39,22 @@ const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: Quiz
     }
   };
 
+  // Проверка наличия вопроса и ответов
+  if (!question || !question.answers) {
+    return (
+      <Card className="bg-velvet/20 border-velvet/30 text-white overflow-hidden">
+        <CardContent className="pt-6">
+          <div className="mb-6">
+            <span className="text-sm text-white/60">
+              Вопрос {currentIndex + 1} из {totalQuestions}
+            </span>
+            <h2 className="text-xl font-bold mt-2">Загрузка вопроса...</h2>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="bg-velvet/20 border-velvet/30 text-white overflow-hidden">
       <CardContent className="pt-6">

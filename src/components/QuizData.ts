@@ -1,4 +1,11 @@
-import { QuestionType } from './QuizQuestion';
+interface QuestionType {
+  id: number;
+  text: string;
+  options: string[];
+  correctAnswer: number;
+}
+
+export { QuestionType };
 
 export const quizQuestions: QuestionType[] = [
   {

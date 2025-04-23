@@ -107,7 +107,15 @@ const Quiz = () => {
             
             {currentQuestionIndex < quizQuestions.length && (
               <QuizQuestion
-                question={quizQuestions[currentQuestionIndex]}
+                question={{
+                  id: quizQuestions[currentQuestionIndex].id,
+                  text: quizQuestions[currentQuestionIndex].text,
+                  answers: quizQuestions[currentQuestionIndex].options.map((option, index) => ({
+                    id: index,
+                    text: option
+                  })),
+                  correctAnswer: quizQuestions[currentQuestionIndex].correctAnswer
+                }}
                 totalQuestions={quizQuestions.length}
                 currentIndex={currentQuestionIndex}
                 onAnswer={handleAnswer}
