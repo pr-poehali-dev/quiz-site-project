@@ -77,16 +77,16 @@ const Index = () => {
         <section className="py-16 bg-dark-burgundy">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-white mb-12">
-              Почему стоит пройти тест?
+              Для кого этот тест?
             </h2>
             
             <div className="max-w-3xl mx-auto space-y-6">
               <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Проверьте свои знания</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Сотрудники линейного персонала</h3>
                   <p className="text-white/80">
-                    Тест поможет определить, насколько хорошо вы знаете стандарты обслуживания в общежитиях.
+                    Тест предназначен для сотрудников, проходящих обучение стандартам обслуживания в общежитиях.
                   </p>
                 </div>
               </div>
@@ -94,9 +94,9 @@ const Index = () => {
               <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Освежите информацию</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Участники тренингов</h3>
                   <p className="text-white/80">
-                    В процессе прохождения теста вы вспомните ключевые принципы коммуникации с гостями и работы с обращениями.
+                    Для закрепления материалов, полученных на тренингах по стандартам обслуживания гостей.
                   </p>
                 </div>
               </div>
@@ -104,9 +104,9 @@ const Index = () => {
               <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Подготовьтесь к работе</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Новые сотрудники</h3>
                   <p className="text-white/80">
-                    Тест будет полезен как для новых сотрудников, так и для тех, кто хочет освежить знания стандартов обслуживания.
+                    Поможет быстрее освоить основные стандарты работы в гостиничном обслуживании.
                   </p>
                 </div>
               </div>

@@ -73,6 +73,17 @@ const Quiz = () => {
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   }, []);
 
+  // Преобразование данных вопросов в формат, ожидаемый компонентом QuizQuestion
+  const currentQuestion = quizQuestions[currentQuestionIndex] ? {
+    id: quizQuestions[currentQuestionIndex].id,
+    text: quizQuestions[currentQuestionIndex].text,
+    answers: quizQuestions[currentQuestionIndex].options.map((option, index) => ({
+      id: index,
+      text: option
+    })),
+    correctAnswer: quizQuestions[currentQuestionIndex].correctAnswer
+  } : null;
+
   return (
     <div className="flex flex-col min-h-screen bg-burgundy text-white">
       <Header />
@@ -105,17 +116,9 @@ const Quiz = () => {
               />
             </div>
             
-            {currentQuestionIndex < quizQuestions.length && (
+            {currentQuestion && (
               <QuizQuestion
-                question={{
-                  id: quizQuestions[currentQuestionIndex].id,
-                  text: quizQuestions[currentQuestionIndex].text,
-                  answers: quizQuestions[currentQuestionIndex].options.map((option, index) => ({
-                    id: index,
-                    text: option
-                  })),
-                  correctAnswer: quizQuestions[currentQuestionIndex].correctAnswer
-                }}
+                question={currentQuestion}
                 totalQuestions={quizQuestions.length}
                 currentIndex={currentQuestionIndex}
                 onAnswer={handleAnswer}

@@ -59,13 +59,12 @@ const Results = () => {
       return;
     }
     
-    // Simulate sending results to the email
-    console.log("Sending results to:", email, results);
-    
-    // In a real application, you would make an API call here
-    // For now, we'll just simulate success
-    setEmailSent(true);
-    setEmailError("");
+    // В реальном приложении здесь был бы API-запрос
+    // Мы симулируем успешную отправку
+    setTimeout(() => {
+      setEmailSent(true);
+      setEmailError("");
+    }, 1000);
   };
 
   if (!results) {
@@ -134,7 +133,7 @@ const Results = () => {
                     className="bg-white/10 border-white/20 text-white"
                   />
                   {emailError && <p className="text-red-300 text-sm">{emailError}</p>}
-                  {emailSent && <p className="text-green-300 text-sm">Результаты отправлены!</p>}
+                  {emailSent && <p className="text-green-300 text-sm">Результаты отправлены на почту {email}!</p>}
                 </div>
                 <Button 
                   type="submit" 
