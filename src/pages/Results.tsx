@@ -22,6 +22,7 @@ const Results = () => {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const [sending, setSending] = useState(false);
   const [results, setResults] = useState<{
     score: number;
     message: string;
@@ -59,12 +60,35 @@ const Results = () => {
       return;
     }
     
-    // В реальном приложении здесь был бы API-запрос
-    // Мы симулируем успешную отправку
+    // Показываем индикатор загрузки
+    setSending(true);
+    
+    // Симулируем отправку на сервер
     setTimeout(() => {
+      // Имитация данных, которые были бы отправлены на сервер
+      const emailData = {
+        to: email,
+        subject: "Тест",
+        body: `
+          Результаты теста по стандартам обслуживания
+          
+          Имя: ${results?.userName || "Участник"}
+          Правильных ответов: ${results?.correctCount || 0} из ${results?.totalQuestions || 12}
+          Процент выполнения: ${results?.score || 0}%
+          
+          Заключение: ${results?.message || ""}
+          
+          С уважением,
+          Дирекция гостиничного жилого фонда
+        `
+      };
+      
+      console.log("Отправка данных:", emailData);
+      
+      setSending(false);
       setEmailSent(true);
       setEmailError("");
-    }, 1000);
+    }, 1500);
   };
 
   if (!results) {
@@ -133,14 +157,30 @@ const Results = () => {
                     className="bg-white/10 border-white/20 text-white"
                   />
                   {emailError && <p className="text-red-300 text-sm">{emailError}</p>}
-                  {emailSent && <p className="text-green-300 text-sm">Результаты отправлены на почту {email}!</p>}
+                  {emailSent && (
+                    <div className="bg-green-500/20 border border-green-500/30 rounded p-2 mt-2">
+                      <p className="text-green-300 text-sm">Результаты отправлены на почту {email}!</p>
+                      <p className="text-green-300 text-xs mt-1">
+                        Тема письма: "Тест"<br />
+                        Содержание: Правильных ответов {results.correctCount} из {results.totalQuestions}
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <Button 
                   type="submit" 
                   className="w-full bg-velvet hover:bg-velvet/90"
-                  disabled={emailSent}
+                  disabled={emailSent || sending}
                 >
-                  <Send className="mr-2 h-4 w-4" /> Отправить результаты
+                  {sending ? (
+                    <>
+                      <span className="animate-pulse mr-2">●</span> Отправка...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" /> Отправить результаты
+                    </>
+                  )}
                 </Button>
               </form>
             </Card>

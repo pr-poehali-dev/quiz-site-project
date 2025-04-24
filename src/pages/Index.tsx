@@ -1,120 +1,128 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ArrowRight, Clock, Trophy, Book } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UserForm from "@/components/UserForm";
-import { User, ArrowRight, CheckCircle, Home, Clock, Book } from "lucide-react";
 
 const Index = () => {
+  const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
+
+  const handleStartQuiz = (userName: string) => {
+    // Сохраняем имя пользователя в sessionStorage
+    sessionStorage.setItem("quizUserName", userName);
+    navigate("/quiz");
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-burgundy text-white">
       <Header />
-      
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-burgundy/90 z-10"></div>
-          <img 
-            src="https://cdn.poehali.dev/files/35aa48a8-de8c-47b2-9520-f77571c9be74.jpg" 
-            alt="Здание" 
-            className="w-full h-[500px] object-cover"
-          />
-          <div className="container mx-auto px-4 relative z-20 py-20 text-white">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Стандарты обслуживания гостей
+
+      <main className="flex-1 py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-6">
+                Тест "Стандарты обслуживания"
               </h1>
-              <p className="text-xl mb-8 opacity-90">
-                Проверьте свои знания о правилах работы в общежитиях
+              <p className="text-xl text-white/80 mb-8">
+                Проверьте знания стандартов обслуживания гостей для сотрудников линейного персонала
               </p>
-              
-              <UserForm />
+
+              {!showForm ? (
+                <Button
+                  onClick={() => setShowForm(true)}
+                  className="bg-velvet hover:bg-velvet/90 text-white px-8 py-6 text-lg"
+                >
+                  Начать тестирование <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              ) : (
+                <Card className="bg-velvet/20 border-velvet/30">
+                  <CardContent className="pt-6">
+                    <UserForm onSubmit={handleStartQuiz} />
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <Card className="bg-velvet/20 border-velvet/30 text-white">
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-velvet/30 rounded-full p-3 mb-4">
+                      <Clock className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">5 минут</h3>
+                    <p className="text-white/80">
+                      Время на прохождение теста ограничено
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-velvet/20 border-velvet/30 text-white">
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-velvet/30 rounded-full p-3 mb-4">
+                      <Book className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">12 вопросов</h3>
+                    <p className="text-white/80">
+                      Вопросы по всем ключевым аспектам стандартов обслуживания
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-velvet/20 border-velvet/30 text-white">
+                <CardContent className="pt-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-velvet/30 rounded-full p-3 mb-4">
+                      <Trophy className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">Результаты</h3>
+                    <p className="text-white/80">
+                      Мгновенная оценка знаний с возможностью отправки на почту
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="bg-velvet/20 border-velvet/30 rounded-lg p-6">
+              <h2 className="text-2xl font-bold mb-4">
+                О тесте
+              </h2>
+              <div className="space-y-4 text-white/90">
+                <p>
+                  Данный тест предназначен для проверки знаний сотрудников линейного персонала по стандартам обслуживания гостей.
+                </p>
+                <p>
+                  Тестирование позволяет оценить уровень владения правилами и процедурами, принятыми в Дирекции гостиничного жилого фонда.
+                </p>
+                <p>
+                  Вопросы охватывают следующие темы:
+                </p>
+                <ul className="list-disc list-inside pl-4 space-y-2">
+                  <li>Правила общения с гостями</li>
+                  <li>Стандарты уборки помещений</li>
+                  <li>Процедуры входа в номер</li>
+                  <li>Обращение с забытыми вещами</li>
+                  <li>Правила приемки и выдачи белья</li>
+                  <li>Телефонные обращения</li>
+                  <li>Контроль соблюдения стандартов</li>
+                </ul>
+              </div>
             </div>
           </div>
-        </section>
-        
-        {/* About Quiz Section */}
-        <section className="bg-gradient-to-b from-burgundy to-dark-burgundy py-16 text-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">О стандартах обслуживания</h2>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-velvet/20 border-velvet/30 p-6 backdrop-blur">
-                <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <User className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-white">Коммуникация</h3>
-                <p className="text-white/80">
-                  Правила общения с гостями, приветствие и обращение по имени, важность визуального контакта.
-                </p>
-              </Card>
-              
-              <Card className="bg-velvet/20 border-velvet/30 p-6 backdrop-blur">
-                <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <Home className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-white">Доступ в комнаты</h3>
-                <p className="text-white/80">
-                  Правила входа в комнату гостя, обеспечение доступа техническим службам, соблюдение приватности.
-                </p>
-              </Card>
-              
-              <Card className="bg-velvet/20 border-velvet/30 p-6 backdrop-blur">
-                <div className="rounded-full bg-velvet/30 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <Clock className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-white">Забытые вещи</h3>
-                <p className="text-white/80">
-                  Процедуры работы с забытыми вещами, сроки хранения, документирование и обеспечение сохранности.
-                </p>
-              </Card>
-            </div>
-          </div>
-        </section>
-        
-        {/* Why Take Quiz Section */}
-        <section className="py-16 bg-dark-burgundy">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-white mb-12">
-              Для кого этот тест?
-            </h2>
-            
-            <div className="max-w-3xl mx-auto space-y-6">
-              <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Сотрудники линейного персонала</h3>
-                  <p className="text-white/80">
-                    Тест предназначен для сотрудников, проходящих обучение стандартам обслуживания в общежитиях.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Участники тренингов</h3>
-                  <p className="text-white/80">
-                    Для закрепления материалов, полученных на тренингах по стандартам обслуживания гостей.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4 bg-velvet/20 p-6 rounded-lg">
-                <CheckCircle className="h-6 w-6 text-white shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Новые сотрудники</h3>
-                  <p className="text-white/80">
-                    Поможет быстрее освоить основные стандарты работы в гостиничном обслуживании.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
       </main>
-      
+
       <Footer />
     </div>
   );

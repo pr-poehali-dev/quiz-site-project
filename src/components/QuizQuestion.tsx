@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -30,14 +30,19 @@ const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: Quiz
   // Reset selection when question changes
   useEffect(() => {
     setSelectedAnswer(null);
-  }, [question]);
+  }, [question.id]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Auto-submit answer when selected
+  useEffect(() => {
     if (selectedAnswer !== null) {
-      onAnswer(selectedAnswer);
+      // Небольшая задержка для визуальной обратной связи
+      const timer = setTimeout(() => {
+        onAnswer(selectedAnswer);
+      }, 500);
+      
+      return () => clearTimeout(timer);
     }
-  };
+  }, [selectedAnswer, onAnswer]);
 
   // Проверка наличия вопроса и ответов
   if (!question || !question.answers) {
@@ -65,7 +70,7 @@ const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: Quiz
           <h2 className="text-xl font-bold mt-2">{question.text}</h2>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <div>
           <RadioGroup
             value={selectedAnswer?.toString()}
             onValueChange={(value) => setSelectedAnswer(parseInt(value))}
@@ -100,14 +105,15 @@ const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: Quiz
 
           <div className="mt-6">
             <Button
-              type="submit"
+              type="button"
               className="w-full bg-velvet hover:bg-velvet/90 text-white"
               disabled={selectedAnswer === null}
+              onClick={() => selectedAnswer !== null && onAnswer(selectedAnswer)}
             >
               Ответить
             </Button>
           </div>
-        </form>
+        </div>
       </CardContent>
     </Card>
   );
