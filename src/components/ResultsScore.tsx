@@ -23,13 +23,13 @@ const ResultsScore = ({
         </div>
       )}
 
-      <div className="bg-velvet/20 border border-velvet/30 rounded-lg p-6 mb-8">
+      <div className="bg-green-600/20 border border-green-600/30 rounded-lg p-6 mb-8">
         <div className="space-y-4">
           <div>
             <p className="text-lg text-white/80 mb-2">Ваш результат:</p>
             <div className="flex items-center justify-center gap-4">
-              <Progress value={score} className="h-3 w-48" />
-              <span className="text-2xl font-bold">{score}%</span>
+              <Progress value={score} className="h-3 w-48 bg-white/20 [&>div]:bg-green-500" />
+              <span className="text-2xl font-bold text-green-400">{score}%</span>
             </div>
           </div>
 

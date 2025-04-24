@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 
 interface Answer {
@@ -102,17 +101,6 @@ const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: Quiz
               </div>
             ))}
           </RadioGroup>
-
-          <div className="mt-6">
-            <Button
-              type="button"
-              className="w-full bg-velvet hover:bg-velvet/90 text-white"
-              disabled={selectedAnswer === null}
-              onClick={() => selectedAnswer !== null && onAnswer(selectedAnswer)}
-            >
-              Ответить
-            </Button>
-          </div>
         </div>
       </CardContent>
     </Card>
