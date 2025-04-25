@@ -5,7 +5,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getQuizResults } from "@/components/QuizData";
 import ResultsScore from "@/components/ResultsScore";
-import EmailResults from "@/components/EmailResults";
 import ResultsActions from "@/components/ResultsActions";
 
 interface ResultsState {
@@ -79,16 +78,7 @@ const Results = () => {
               timeExpired={timeExpired}
             />
 
-            {/* Компонент для отправки результатов на email */}
-            <EmailResults 
-              userName={results.userName}
-              score={results.score}
-              correctCount={results.correctCount}
-              totalQuestions={results.totalQuestions}
-              message={results.message}
-            />
-
-            {/* Компонент с кнопками навигации */}
+            {/* Компонент с кнопками навигации и инструкцией */}
             <ResultsActions />
           </div>
         </div>
