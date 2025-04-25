@@ -32,7 +32,7 @@ const ResultsScore = ({ score, correctCount, totalQuestions, message, timeExpire
           </div>
         </div>
         
-        <Progress value={score} className="h-2.5 bg-white/10" indicatorClassName="bg-green-500" />
+        <Progress value={score} className="h-2.5 bg-white/10" />
         
         <div className="mt-4">
           <h3 className="text-lg font-medium mb-2">Заключение:</h3>
