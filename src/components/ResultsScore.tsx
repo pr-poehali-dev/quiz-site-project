@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Award } from "lucide-react";
+import { Trophy, Clock } from "lucide-react";
 
 interface ResultsScoreProps {
   score: number;
@@ -11,64 +11,73 @@ interface ResultsScoreProps {
   timeExpired?: boolean;
 }
 
-const ResultsScore = ({ 
-  score, 
-  correctCount, 
-  totalQuestions, 
-  message, 
-  timeExpired 
-}: ResultsScoreProps) => {
+const ResultsScore: React.FC<ResultsScoreProps> = ({
+  score,
+  correctCount,
+  totalQuestions,
+  message,
+  timeExpired = false
+}) => {
+  // Determine bg color based on score
+  const getScoreColor = (score: number) => {
+    if (score >= 85) return "bg-green-500/20 border-green-500/30";
+    if (score >= 70) return "bg-yellow-500/20 border-yellow-500/30";
+    return "bg-red-500/20 border-red-500/30";
+  };
+
+  // Get progress color based on score
+  const getProgressColor = (score: number) => {
+    if (score >= 85) return "bg-green-500";
+    if (score >= 70) return "bg-yellow-500";
+    return "bg-red-500";
+  };
+
+  // Get icon color based on score
+  const getIconColor = (score: number) => {
+    if (score >= 85) return "text-green-500";
+    if (score >= 70) return "text-yellow-500";
+    return "text-red-500";
+  };
+
   return (
-    <div className="space-y-8">
-      <Card className="bg-green-600/20 border-green-600/30 text-white">
-        <CardContent className="pt-6">
-          <div className="flex flex-col items-center justify-center text-center space-y-4">
-            <Award className="h-16 w-16 text-green-500" />
-            <h2 className="text-2xl font-bold">
-              {timeExpired ? "Время вышло!" : "Ваш результат"}
-            </h2>
-            
-            <div className="w-full space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Общий результат</span>
-                <span className="font-medium text-green-400">{score}%</span>
-              </div>
-              <Progress 
-                value={score} 
-                className="h-2 bg-white/20" 
-              />
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
-              <Card className="bg-white/10 border-white/5">
-                <CardContent className="p-4 text-center">
-                  <div className="text-xl font-bold text-green-400">{correctCount}</div>
-                  <div className="text-xs text-white/60">Правильных ответов</div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white/10 border-white/5">
-                <CardContent className="p-4 text-center">
-                  <div className="text-xl font-bold">{totalQuestions - correctCount}</div>
-                  <div className="text-xs text-white/60">Неправильных ответов</div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-white/10 border-white/5">
-                <CardContent className="p-4 text-center">
-                  <div className="text-xl font-bold">{totalQuestions}</div>
-                  <div className="text-xs text-white/60">Всего вопросов</div>
-                </CardContent>
-              </Card>
-            </div>
-            
-            <div className="text-lg text-center max-w-md">
-              {message}
-            </div>
+    <Card className={`${getScoreColor(score)} text-white`}>
+      <CardContent className="pt-6">
+        <div className="text-center mb-4">
+          {timeExpired ? (
+            <Clock className={`h-12 w-12 mx-auto mb-2 ${getIconColor(score)}`} />
+          ) : (
+            <Trophy className={`h-12 w-12 mx-auto mb-2 ${getIconColor(score)}`} />
+          )}
+          
+          <h2 className="text-xl font-bold">
+            {timeExpired ? "Время вышло!" : "Результат"}
+          </h2>
+          
+          <p className="text-white/80 mb-4">
+            {timeExpired 
+              ? "К сожалению, время на прохождение теста закончилось." 
+              : "Благодарим за прохождение теста по стандартам обслуживания!"}
+          </p>
+          
+          <div className="text-4xl font-bold mb-2">
+            {score}%
           </div>
-        </CardContent>
-      </Card>
-    </div>
+          
+          <p className="text-white/80">
+            {correctCount} из {totalQuestions} вопросов
+          </p>
+        </div>
+        
+        <Progress 
+          value={score} 
+          className="h-3 bg-white/20" 
+        />
+        
+        <div className="mt-6 p-4 bg-white/10 rounded-lg text-center">
+          <p className="italic">{message}</p>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

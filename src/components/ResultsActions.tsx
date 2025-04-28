@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { Camera, Redo, Home } from "lucide-react";
+import { Camera, Home } from "lucide-react";
 
 const ResultsActions = () => {
   const navigate = useNavigate();
@@ -31,14 +31,6 @@ const ResultsActions = () => {
         >
           <Home className="h-4 w-4" />
           На главную
-        </Button>
-        
-        <Button 
-          onClick={() => navigate("/quiz")}
-          className="w-full sm:w-auto flex items-center gap-2"
-        >
-          <Redo className="h-4 w-4" />
-          Пройти заново
         </Button>
       </div>
     </div>
