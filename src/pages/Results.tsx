@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ResultsScore from "@/components/ResultsScore";
 import ResultsActions from "@/components/ResultsActions";
+import ResultsAnswersList from "@/components/ResultsAnswersList";
 import { getQuizResults } from "@/components/QuizData";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Results = () => {
   const location = useLocation();
@@ -31,6 +34,7 @@ const Results = () => {
 
   // Получение результатов теста
   const results = getQuizResults(state.answers, state.userName);
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen bg-burgundy text-white">
@@ -51,6 +55,30 @@ const Results = () => {
               message={results.message}
               timeExpired={state.timeExpired}
             />
+            
+            {/* Кнопка для отображения деталей */}
+            <div className="flex justify-center">
+              <Button 
+                variant="outline" 
+                onClick={() => setShowDetails(!showDetails)}
+                className="bg-velvet/20 hover:bg-velvet/30 border-velvet/30"
+              >
+                {showDetails ? (
+                  <>
+                    <ChevronUp className="h-4 w-4 mr-2" />
+                    Скрыть детали ответов
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="h-4 w-4 mr-2" />
+                    Показать детали ответов
+                  </>
+                )}
+              </Button>
+            </div>
+            
+            {/* Детали ответов */}
+            {showDetails && <ResultsAnswersList userAnswers={state.answers} />}
             
             {/* Блок с действиями */}
             <ResultsActions />
