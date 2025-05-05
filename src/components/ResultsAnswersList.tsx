@@ -12,7 +12,7 @@ const ResultsAnswersList: React.FC<ResultsAnswersListProps> = ({ userAnswers }) 
   return (
     <Card className="bg-velvet/20 border-velvet/30 text-white">
       <CardHeader>
-        <CardTitle className="text-xl">Детали ответов</CardTitle>
+        <CardTitle className="text-xl">Ваши ответы</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -22,7 +22,6 @@ const ResultsAnswersList: React.FC<ResultsAnswersListProps> = ({ userAnswers }) 
             const userAnswerText = userAnswer !== undefined 
               ? question.options[userAnswer] 
               : "Не отвечено";
-            const correctAnswerText = question.options[question.correctAnswer];
             
             return (
               <div 
@@ -42,22 +41,13 @@ const ResultsAnswersList: React.FC<ResultsAnswersListProps> = ({ userAnswers }) 
                       Вопрос {index + 1}: {question.text}
                     </div>
                     
-                    {!isCorrect && (
-                      <div className="text-sm">
-                        <div className="text-red-300">
-                          Ваш ответ: {userAnswerText}
-                        </div>
-                        <div className="text-green-300">
-                          Правильный ответ: {correctAnswerText}
-                        </div>
-                      </div>
-                    )}
-                    
-                    {isCorrect && (
-                      <div className="text-sm text-green-300">
-                        Верно: {correctAnswerText}
-                      </div>
-                    )}
+                    <div className="text-sm">
+                      {isCorrect ? (
+                        <span className="text-green-300">Ответ верный</span>
+                      ) : (
+                        <span className="text-red-300">Ответ неверный</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
