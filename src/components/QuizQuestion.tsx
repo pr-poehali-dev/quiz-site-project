@@ -1,7 +1,6 @@
+
 import React, { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { CheckCircle } from "lucide-react";
 
 interface Answer {
@@ -69,38 +68,26 @@ const QuizQuestion = ({ question, totalQuestions, currentIndex, onAnswer }: Quiz
           <h2 className="text-xl font-bold mt-2">{question.text}</h2>
         </div>
 
-        <div>
-          <RadioGroup
-            value={selectedAnswer?.toString()}
-            onValueChange={(value) => setSelectedAnswer(parseInt(value))}
-            className="space-y-3"
-          >
-            {question.answers.map((answer) => (
-              <div
-                key={answer.id}
-                className={`flex items-center space-x-2 rounded-lg p-3 transition-colors ${
-                  selectedAnswer === answer.id
-                    ? "bg-velvet text-white"
-                    : "bg-white/5 hover:bg-white/10"
-                }`}
-              >
-                <RadioGroupItem
-                  value={answer.id.toString()}
-                  id={`answer-${answer.id}`}
-                  className="border-white text-white"
-                />
-                <Label
-                  htmlFor={`answer-${answer.id}`}
-                  className="flex-1 cursor-pointer py-1 text-white"
-                >
-                  {answer.text}
-                </Label>
+        <div className="space-y-3">
+          {question.answers.map((answer) => (
+            <button
+              key={answer.id}
+              type="button"
+              onClick={() => setSelectedAnswer(answer.id)}
+              className={`w-full text-left p-4 rounded-lg transition-colors ${
+                selectedAnswer === answer.id
+                  ? "bg-velvet text-white"
+                  : "bg-white/5 hover:bg-white/10"
+              }`}
+            >
+              <div className="flex justify-between items-center">
+                <div>{answer.text}</div>
                 {selectedAnswer === answer.id && (
-                  <CheckCircle className="h-5 w-5 text-white" />
+                  <CheckCircle className="h-5 w-5 ml-2 shrink-0" />
                 )}
               </div>
-            ))}
-          </RadioGroup>
+            </button>
+          ))}
         </div>
       </CardContent>
     </Card>
