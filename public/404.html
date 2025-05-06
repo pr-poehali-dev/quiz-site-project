@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Перенаправление</title>
+  <script type="text/javascript">
+    // Пересылка на главную страницу в случае 404
+    var pathSegmentsToKeep = 1;
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body>
+  <h1 style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
+    Перенаправление...
+  </h1>
+  <p style="text-align: center; font-family: Arial, sans-serif;">
+    Если вы не были перенаправлены автоматически, <a href="/">нажмите здесь</a>.
+  </p>
+</body>
+</html>
