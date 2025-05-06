@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, XCircle } from "lucide-react";
@@ -19,9 +18,6 @@ const ResultsAnswersList: React.FC<ResultsAnswersListProps> = ({ userAnswers }) 
           {quizQuestions.map((question, index) => {
             const userAnswer = userAnswers[index];
             const isCorrect = userAnswer === question.correctAnswer;
-            const userAnswerText = userAnswer !== undefined 
-              ? question.options[userAnswer] 
-              : "Не отвечено";
             
             return (
               <div 
